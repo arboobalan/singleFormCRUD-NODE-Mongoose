@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title><%= title %></title>
+</head>
+
+<body>
+  <section>
+    <h3 class="text-center text-primary"> User List</h3>
+    <div class="container">
+      <div class="table-responsive">
+        <% if (users!='') { %>
+        <table class="table">
+          <thead class="table-dark">
+            <th>#</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </thead>
+          <% users.forEach((row, index) => { %>
+          <tbody>
+            <tr>
+              <td><b> <% index + 1 %></b></td>
+              <td><%= row.username %></td>
+              <td><%= row.email %></td>
+              <td><%= row.gender %></td>
+              <td><%= row.mobile%></td>
+              <td><a href="/addOrEdit/<%= row._id %>" class="btn btn-sm btn-primary"> <i class="fa fa-edit"> Edit</i></a></td>
+              <td><a href="/delete/<%= row._id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you want to delete?')"> <i class="fa fa-trash"> Delete</i></a></td>
+            </tr>
+          </tbody>
+          <% }) %>
+        </table>
+        <% } else{ %>
+        <h4 class="text-center text-danger">Record not found</h4>
+        <% } %>
+      </div>
+    </div>
+  </section>
+  <section>
+    <a href="addOrEdit" class="btn btn-outline-success btn-sm" style="margin-left: 10px;"> Create New</a>
+  </section>
+</body>
+
+</html>
